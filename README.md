@@ -10,4 +10,7 @@
 ##Usage
 
 #### Barcharts.
-Create a rectangle and duplicate it as much times as you want. Each rectangle will become a bar in your new fake chart. Now select all the bars, click on the plugins menu and click on _Generate barchart_.
+
+![Barchart example](http://i.imgur.com/UJghvXY.png)
+
+Create a rectangle and duplicate it as much times as you want. Each rectangle will become a bar in your new fake chart. Now select all the bars, click on the plugins menu and click on _Generate barchart_. The maximum height of the chart will be defined by the highest rectangle in your selection.

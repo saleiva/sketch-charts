@@ -1,14 +1,30 @@
 var bEl;
 
-for (var i=0; i<selection.count(); i++) {
-	var _layer = bEl = selection[i].absoluteRect();
-	bEl = bEl.height() < _layer.height() ? _layer : bEl;
+function alert(msg, title) {
+  title = title || "Whoops";
+  var app = [NSApplication sharedApplication];
+  [app displayDialog:msg withTitle:title];
 }
 
-for (var i=0; i<selection.count(); i++) {
-	var _layer = selection[i].absoluteRect();
-	if(_layer != bEl){
-		_layer.height = Math.floor(Math.random() * bEl.height()) + 1;
-		_layer.y = bEl.y() + (bEl.height() - _layer.height());
+function render(sel){
+	var _sel = sel;
+
+	for (var i=0; i<_sel.count(); i++) {
+		var _layer = bEl = _sel[i].absoluteRect();
+		bEl = bEl.height() < _layer.height() ? _layer : bEl;
 	}
+
+	for (var i=0; i<_sel.count(); i++) {
+		var _layer = _sel[i].absoluteRect();
+		if(_layer != bEl){
+			_layer.height = Math.floor(Math.random() * bEl.height()) + 1;
+			_layer.y = bEl.y() + (bEl.height() - _layer.height());
+		}
+	}
+}
+
+if(!(selection && selection.length())) {
+	alert("Make sure you've selected some rectangles to generate your barchart","No rectangles selected.");
+}else{
+	render(selection)	
 }

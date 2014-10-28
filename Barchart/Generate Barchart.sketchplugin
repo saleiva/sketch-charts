@@ -1,21 +1,23 @@
 var bEl;
 
 function alert(msg, title) {
+	var app = [NSApplication sharedApplication];
   title = title || "Whoops";
-  var app = [NSApplication sharedApplication];
   [app displayDialog:msg withTitle:title];
 }
 
 function render(sel){
 	var _sel = sel;
+	var _layer;
+	bEl = _sel[0].absoluteRect();
 
-	for (var i=0; i<_sel.count(); i++) {
-		var _layer = bEl = _sel[i].absoluteRect();
+	for (var i=1; i<_sel.count(); i++) {
+		_layer = _sel[i].absoluteRect();
 		bEl = bEl.height() < _layer.height() ? _layer : bEl;
 	}
 
 	for (var i=0; i<_sel.count(); i++) {
-		var _layer = _sel[i].absoluteRect();
+		_layer = _sel[i].absoluteRect();
 		if(_layer != bEl){
 			_layer.height = Math.floor(Math.random() * bEl.height()) + 1;
 			_layer.y = bEl.y() + (bEl.height() - _layer.height());

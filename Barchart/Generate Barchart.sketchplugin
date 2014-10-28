@@ -1,0 +1,14 @@
+var bEl;
+
+for (var i=0; i<selection.count(); i++) {
+	var _layer = bEl = selection[i].absoluteRect();
+	bEl = bEl.height() < _layer.height() ? _layer : bEl;
+}
+
+for (var i=0; i<selection.count(); i++) {
+	var _layer = selection[i].absoluteRect();
+	if(_layer != bEl){
+		_layer.height = Math.floor(Math.random() * bEl.height()) + 1;
+		_layer.y = bEl.y() + (bEl.height() - _layer.height());
+	}
+}

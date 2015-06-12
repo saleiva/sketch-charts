@@ -1,5 +1,5 @@
 var bEl;
-selection = context.selection;
+var selection = context.selection;
 
 function alert(msg, title) {
 	var app = [NSApplication sharedApplication];

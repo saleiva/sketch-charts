@@ -1,4 +1,5 @@
 var bEl;
+selection = context.selection;
 
 function alert(msg, title) {
 	var app = [NSApplication sharedApplication];
@@ -28,5 +29,5 @@ function render(sel){
 if(!(selection && selection.length())) {
 	alert("Make sure you've selected some rectangles to generate your barchart","No rectangles selected.");
 }else{
-	render(selection)	
+	render(selection)
 }

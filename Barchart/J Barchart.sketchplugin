@@ -39,7 +39,6 @@ function render(sel){
 	}
 
 	generateChart(_sel, _tallerItem);
-
 }
 
 if(!(selection && selection.length())) {

@@ -1,0 +1,49 @@
+selection = context.selection;
+
+function alert(msg, title) {
+	var app = [NSApplication sharedApplication];
+  title = title || "Whoops";
+  [app displayDialog:msg withTitle:title];
+}
+
+function generateChart(s,m){
+
+	var _sel = s;
+	var _highest = m.y();
+	var _tallest = m.height()
+	var _layer;
+
+	for (var i = 0; i < _sel.count(); i++){
+			_layer = _sel[i].absoluteRect();
+
+			if(i == 0){
+				_layer.height = _tallest;
+			}else{
+				var _hbase = _tallest/Math.pow(i,0.45);
+				_hbase = Math.floor(_hbase * (1 + Math.random()*0.3 - 0.5*0.3));
+				_layer.height = _hbase > _tallest ? _tallest : _hbase;
+			}
+
+			_layer.y = _highest + _tallest - _layer.height();
+	}
+}
+
+function render(sel){
+	var _sel = sel;
+	var _layer;
+	var _tallerItem = _sel[0].absoluteRect();
+
+	for (var i=1; i<_sel.count(); i++) {
+		_layer = _sel[i].absoluteRect();
+		_tallerItem = _tallerItem.height() < _layer.height() ? _layer : _tallerItem;
+	}
+
+	generateChart(_sel, _tallerItem);
+
+}
+
+if(!(selection && selection.length())) {
+	alert("Make sure you've selected some rectangles to generate your barchart","No rectangles selected.");
+}else{
+	render(selection);
+}

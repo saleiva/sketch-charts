@@ -31,14 +31,14 @@ function generateChart(s,m){
 function render(sel){
 	var _sel = sel;
 	var _layer;
-	var _tallerItem = _sel[0].absoluteRect();
+	var _tallestItem = _sel[0].absoluteRect();
 
 	for (var i=1; i<_sel.count(); i++) {
 		_layer = _sel[i].absoluteRect();
-		_tallerItem = _tallerItem.height() < _layer.height() ? _layer : _tallerItem;
+		_tallestItem = _tallestItem.height() < _layer.height() ? _layer : _tallestItem;
 	}
 
-	generateChart(_sel, _tallerItem);
+	generateChart(_sel, _tallestItem);
 }
 
 if(!(selection && selection.length())) {
